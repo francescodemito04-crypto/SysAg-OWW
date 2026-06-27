@@ -1,0 +1,57 @@
+# Ambienti virtuali
+venv/
+.venv/
+env/
+.env/
+ENV/
+
+# Build e output
+dist/
+build/
+*.egg-info/
+*.egg
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# File di configurazione locale e segreti
+.env
+.env.*
+*.env
+secrets.py
+secrets/
+config/local_settings.py
+
+# Cache e testing
+.cache/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+coverage.xml
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# macOS / Windows
+.DS_Store
+Thumbs.db
+
+#cartelle dataset rumori
+
+audioset_16k/
+ESC-50_16k/
+fma/
+mit_rirs/
+musan_16k/
+my_custom_model/
+openslr26_rirs/
+openwakeword/
+piper-sample-generator/
+urbansound_16k/
+openwakeword_features_ACAV100M_2000_hrs_16bit.npy
+validation_set_features.npy
+*Zone.Identifier
