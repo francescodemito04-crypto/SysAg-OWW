@@ -1,0 +1,97 @@
+apri powerhell
+	wsl --install (questo comnado andrà ad installare la distro Ubuntu e nel caso non si abbia anche il wsl )
+	inserisci username e password
+	sudo apt update && sudo apt upgrade
+su ubuntu wsl ws
+	sudo add-apt-repository ppa:deadsnakes/ppa -y 	--> serve per gestire diverse installazioni di python (per il nostro scopo serve la 3.10 )
+	sudo apt update
+	installare python e librerie utili (venv... non  riscrdo tutte, per le modifiche fatte al notebook forse ti troverai a fare dei pip install per qualche libreria mancante)
+		sudo apt install -y python3.10 python3-pip python3.10-venv python3.10-dev build-essential
+	mkdir -p ~/openwakeword_project
+	cd ~/openwakeword_project
+	python3.10 -m venv venv
+	source venv/bin/activate
+	python --version
+
+venv attivata
+	pip install jupyterlab ipykernel ipywidgets
+
+	lancia jupyter e esEgui primo blocco per installazione ambiente
+		jupyter lab
+		
+	aggingere passagio sposta file per jupyter
+		
+	esegui tab per il setup dell'enviroment
+		restart kernel
+
+	esegui tab per gli import
+	
+	ERRORE
+	AttributeError: module 'pyarrow' has no attribute 'PyExtensionType'
+		pip install pyarrow==14.0.1
+		restart kernel
+
+	esegui tab per gli import
+
+	ERRORE
+	ImportError: numpy.core.multiarray failed to import
+		pip install "numpy<2"
+		anche se da errore, prosegui
+		restart kernel
+		
+	esegui tab per gli import
+		verifica se hai installato tutte le librerie di base per l'esecuzione dei vari script
+		
+	esegui tabs dei download
+
+	esegui generazione samples	
+		ERRORE
+		from generate_samples import generate_samples
+		ModuleNotFoundError: No module named 'generate_samples
+			cd ~/openwakeword_project/piper-sample-generator && git checkout 213d4d5		
+		
+		ERRORE
+		ValueError: Invalid resampling method: sinc_interp_kaiser
+			FILE piper-sample-generator/generate_samples.py
+			modifica su riga 118 
+	
+	se ci sono problemi durante la generazione e 
+	il training con CUDA o le librebrie pytorch 
+	bisogna trovare una versione cuda che funzioni con la gpu e la versione delle librerie compatibili:
+		torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 (versione cuda che sto utilizzando io)
+		
+	soluzione problema traning che si blocca intorno al 75%
+		1.aumentare swapfile per wsl 
+			vai su esplora risorse
+			scrivi nella barra dei percorsi %userprofile%
+			ti portera alla cartella dell'utente loggato in windows
+			crea file .wslconfig
+				scrivi nel file:
+					[wsl2]
+					
+					swap=32GB decidi tu la dimensione
+			riavvia la wsl
+		
+		2.prova a modificare il batch_size
+
+
+	in caso di:
+		(non ricordo esattamente l'errore)
+		AttributeError: module 'torchaudio' has no attribute 'set_audio_backend' 
+			OPPURE
+		RuntimeError: soundfile backend is no longer supported
+			ALLORA
+
+
+			sed -i 's/torchaudio.set_audio_backend/# torchaudio.set_audio_backend/g' ~/openwakeword_project/venv/lib/python3.10/site-packages/torch_audiomentations/utils/io.py
+		
+
+
+		RuntimeError: weights_only is set to True, but you are trying to load an arbitrary object...
+			OPPURE
+		Pickling errors:OWW da problemi quando carica gli altri modelli che ha a supporto dell'embedding. Attenzione, impostare weights_only=False può portare a esecuzione di codice "nascosto"
+			ALLORA
+			sed -i 's/torch.load(model_path)/torch.load(model_path, weights_only=False)/g' ~/openwakeword_project/piper-sample-generator/generate_samples.py
+			sed -i 's/torch.load(checkpoint_path, map_location=device)/torch.load(checkpoint_path, map_location=device, 
+				weights_only=False)/g' ~/openwakeword_project/venv/lib/python3.10/site-packages/dp/model/model.py'
+		

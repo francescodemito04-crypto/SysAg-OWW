@@ -4,7 +4,6 @@ venv/
 env/
 .env/
 ENV/
-
 # Build e output
 dist/
 build/
@@ -15,7 +14,6 @@ __pycache__/
 *.pyo
 *.pyd
 .Python
-
 # File di configurazione locale e segreti
 .env
 .env.*
@@ -23,7 +21,6 @@ __pycache__/
 secrets.py
 secrets/
 config/local_settings.py
-
 # Cache e testing
 .cache/
 .pytest_cache/
@@ -32,16 +29,13 @@ config/local_settings.py
 htmlcov/
 .coverage
 coverage.xml
-
 # Jupyter Notebook
 .ipynb_checkpoints/
-
 # macOS / Windows
 .DS_Store
 Thumbs.db
-
 #cartelle dataset rumori
-
+1781719638236-cv-corpus-26.0-2026-06-12-it/
 audioset_16k/
 ESC-50_16k/
 fma/
