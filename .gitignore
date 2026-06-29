@@ -48,5 +48,10 @@ piper-sample-generator/
 urbansound_16k/
 openwakeword_features_ACAV100M_2000_hrs_16bit.npy
 validation_set_features.npy
+validation_set_features_custom.npy
 *Zone.Identifier
 *nul*
+common_voice_it_val_wav/
+common_voice_it_wav/
+backup_ambiente_funzionante.txt
+common_voice_it_features.npy
