@@ -28,7 +28,7 @@ custom_negative_phrases:
 false_positive_validation_data_path: validation_set_features_custom.npy
 feature_data_files:
   ACAV100M_sample: openwakeword_features_ACAV100M_2000_hrs_16bit.npy
-  common_voice_it: ./common_voice_it_features.npy
+  Common_voice: openwakeword_features_ACAV100M_2000_hrs_16bit.npy
 layer_size: 32
 max_negative_weight: 300
 model_name: picsi
@@ -41,9 +41,9 @@ rir_paths:
 - ./openslr26_rirs
 - ./mit_rirs
 steps: 50000
-target_accuracy: 0.75
+target_accuracy: 0.6
 target_false_positives_per_hour: 0.2
 target_phrase:
 - picsi
-target_recall: 0.65
+target_recall: 0.4
 tts_batch_size: 50

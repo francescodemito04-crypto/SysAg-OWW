@@ -44,21 +44,12 @@ venv attivata
 		
 	esegui tabs dei download
 
-	esegui generazione samples	
-		ERRORE
-		from generate_samples import generate_samples
-		ModuleNotFoundError: No module named 'generate_samples
-			cd ~/openwakeword_project/piper-sample-generator && git checkout 213d4d5		
-		
-		ERRORE
-		ValueError: Invalid resampling method: sinc_interp_kaiser
-			FILE piper-sample-generator/generate_samples.py
-			modifica su riga 118 
-	
+	esegui generazione samples	8 
+
 	se ci sono problemi durante la generazione e 
 	il training con CUDA o le librebrie pytorch 
 	bisogna trovare una versione cuda che funzioni con la gpu e la versione delle librerie compatibili:
-		torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 (versione cuda che sto utilizzando io)
+		torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121 (versione cuda che sto utilizzando io)
 		
 	soluzione problema traning che si blocca intorno al 75%
 		1.aumentare swapfile per wsl 
